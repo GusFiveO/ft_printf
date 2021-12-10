@@ -9,7 +9,7 @@ OBJS = $(addprefix ${OBJ_DIR}, ${SRCS:.c=.o})
 
 NAME = libftprintf.a
 
-CFLAGS = -Wall -Werror -Wextra 
+CFLAGS = -Wall -Wextra -Werror
 
 INCPATH = -I ${INC_DIR} -I ${LIBFT_DIR}
 

@@ -6,7 +6,7 @@
 /*   By: alorain <alorain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:34:08 by alorain           #+#    #+#             */
-/*   Updated: 2021/12/09 18:38:15 by alorain          ###   ########.fr       */
+/*   Updated: 2021/12/10 14:00:44 by alorain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	count_digit_base(int n, int base_len)
 	int	len;
 
 	len = 0;
-	if (n < 0)
+	if (n <= 0)
 		len = 1;
 	while (n != 0)
 	{
@@ -54,7 +54,7 @@ int	manage_strlen(t_printf *flag, char *str)
 
 int	manage_space(t_printf *flag, int n)
 {
-	if (flag->space && n > 0)
+	if (flag->space && n >= 0)
 	{
 		write_buff(" ", 1);
 		return (1);

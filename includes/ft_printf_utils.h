@@ -6,7 +6,7 @@
 /*   By: alorain <alorain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 14:37:20 by alorain           #+#    #+#             */
-/*   Updated: 2021/12/09 18:45:02 by alorain          ###   ########.fr       */
+/*   Updated: 2021/12/10 16:17:06 by alorain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	manage_char(t_printf *flag, char c);
 void	print_arg(t_printf *flag, va_list vl);
 void	manage_string(t_printf *flag, char *str);
 void	manage_hexa_maj(t_printf *flag, unsigned int nbr);
-void	manage_hexa(t_printf *flag, unsigned int nbr);
+void	manage_hexa(t_printf *flag, unsigned long nbr);
 void	manage_integer(t_printf *flag, int n);
 
 	/* print_arg_utils.c */
@@ -49,10 +49,10 @@ int		manage_space_un(t_printf *flag, unsigned int n);
 int		manage_space(t_printf *flag, int n);
 int		manage_strlen(t_printf *flag, char *str);
 size_t	count_digit_base_un(unsigned long n, size_t base_len);
-
+void	ft_putnbr_zero_int(int n);
 	/* print_arg_utils2.c */
 
-int		manage_diez(t_printf *flag, unsigned int n);
+int		manage_diez(t_printf *flag, unsigned long n);
 int		manage_diez_maj(t_printf *flag, unsigned int n);
 void	manage_pointer(t_printf *flag, unsigned long p);
 void	manage_uinteger(t_printf *flag, unsigned int un);
