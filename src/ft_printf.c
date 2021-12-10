@@ -6,7 +6,7 @@
 /*   By: alorain <alorain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 11:57:14 by alorain           #+#    #+#             */
-/*   Updated: 2021/12/10 16:18:08 by alorain          ###   ########.fr       */
+/*   Updated: 2021/12/10 22:38:51 by alorain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int	ft_printf(const char *str, ...)
 
 #include <limits.h>
 
-/* int main()
-{ */
-	/* char	*str = "yololo"; */
+int main()
+{
+	/* char	*str = "yoyoyoyoyoy"NULL; */
 /* 	char *s2 = "Mussum Ipsum, cacilds vidis litro abertis. Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi. Atirei o pau no gatis, per gatis num morreus.";
 	ft_printf("ft_printf : %c-%c-%c-\n", '0', 0, '1');
 	printf("___printf : %c-%c-%c-\n", '0', 0, '1');
@@ -59,8 +59,8 @@ int	ft_printf(const char *str, ...)
 	/* int ft = */ /* ft_printf("ft :%-13x\n", UINT_MAX); */
 /* 	int _p = printf("p_ :%-12x\n", LONG_MIN);
 	int ft = ft_printf("ft :%-12x\n", LONG_MIN); */
-/* 	int _p = printf("p_ :%-10X\n", 255);
-	int ft = ft_printf("ft :%-10X\n", 255);
+	int _p = printf("p_ :%01d\n", 0);
+	int ft = ft_printf("ft :%01d\n", 0);
 	printf("ft = %d\n_p = %d\n", ft, _p);
 	return (1);
-}  */
+}

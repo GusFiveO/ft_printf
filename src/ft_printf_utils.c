@@ -6,7 +6,7 @@
 /*   By: alorain <alorain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 12:07:37 by alorain           #+#    #+#             */
-/*   Updated: 2021/12/10 12:04:25 by alorain          ###   ########.fr       */
+/*   Updated: 2021/12/10 22:37:19 by alorain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	ft_putchar(char c)
 	write_buff(&c, 1);
 }
 
-void	ft_putstr(char *str)
+void	ft_putstr(char *str, int len)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while (i < len && str[i])
 	{
 		ft_putchar(str[i]);
 		i++;
@@ -35,7 +35,7 @@ void	ft_putnbr_zero_int(int n)
 {
 	if (n == -2147483648)
 	{
-		ft_putstr("2147483648");
+		ft_putstr("2147483648", 11);
 		return ;
 	}
 	if (n >= 10)
@@ -51,14 +51,11 @@ void	ft_putnbr(int n)
 {
 	if (n == -2147483648)
 	{
-		ft_putstr("-2147483648");
+		ft_putstr("2147483648", 10);
 		return ;
 	}
 	if (n < 0)
-	{	
 		n *= -1;
-		write_buff("-", 1);
-	}
 	if (n >= 10)
 	{
 		ft_putnbr(n / 10);

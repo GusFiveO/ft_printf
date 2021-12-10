@@ -6,7 +6,7 @@
 /*   By: alorain <alorain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:37:09 by alorain           #+#    #+#             */
-/*   Updated: 2021/12/10 16:17:54 by alorain          ###   ########.fr       */
+/*   Updated: 2021/12/10 21:53:55 by alorain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,35 +62,7 @@ void	print_char(char c, int n)
 	}
 }
 
-void	manage_uinteger(t_printf *flag, unsigned int un)
-{
-	int	nb_digits;
-
-	nb_digits = count_digit_base_un((unsigned long)un, 10);
-	if (flag->minus && flag->count&& !flag->dot)
-	{
-		ft_putnbr_base(un, "0123456789");
-		print_char(' ', flag->count - nb_digits);
-	}
-	else if (flag->dot)
-	{
-		print_char('0', flag->dot - nb_digits);
-		ft_putnbr_base(un, "0123456789");
-	}
-	else if (flag->zero)
-	{
-		print_char('0', flag->count - nb_digits);
-		ft_putnbr_base(un, "0123456789");
-	}
-	else
-	{
-		if (flag->count)
-			print_char(' ', flag->count - nb_digits);
-		ft_putnbr_base(un, "0123456789");
-	}
-}
-
-void	manage_pointer(t_printf *flag, unsigned long p)
+/* void	manage_pointer(t_printf *flag, unsigned long p)
 {
 	size_t	nb_digits;
 	
@@ -113,4 +85,4 @@ void	manage_pointer(t_printf *flag, unsigned long p)
 		write_buff("0x", 2);
 		ft_putnbr_base(p, "0123456789abcdef");
 	}
-}
+} */

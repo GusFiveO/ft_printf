@@ -6,7 +6,7 @@
 /*   By: alorain <alorain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:34:08 by alorain           #+#    #+#             */
-/*   Updated: 2021/12/10 14:00:44 by alorain          ###   ########.fr       */
+/*   Updated: 2021/12/10 22:40:08 by alorain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 size_t	count_digit_base(int n, int base_len)
 {
-	int	len;
+	int		len;
+	long	nb;
 
 	len = 0;
-	if (n <= 0)
+	nb = n;
+	if (nb <= 0)
+		nb *= -1;
+	if (nb == 0)
 		len = 1;
-	while (n != 0)
+	while (nb != 0)
 	{
 		len++;
-		n = n / base_len;
+		nb = nb / base_len;
 	}
 	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: alorain <alorain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:24:57 by alorain           #+#    #+#             */
-/*   Updated: 2021/12/09 18:05:26 by alorain          ###   ########.fr       */
+/*   Updated: 2021/12/10 21:03:49 by alorain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static size_t	get_dot(t_printf *flag, const char *str)
 		nb_digit++;
 		while (ft_isdigit(str[nb_digit]))
 			nb_digit++;
-		if (!ft_atoi(str + 1))
-			flag->dot = -1;
-		else
+		/* if (!ft_atoi(str + 1))
+			flag->dot = -1; */
+		/* else */
 			flag->dot = ft_atoi(str + 1);
 	}
 	return (nb_digit);
@@ -71,7 +71,7 @@ static void	init_flags(t_printf *flag)
 	flag->plus = 0;
 	flag->zero = 0;
 	flag->diez = 0;
-	flag->dot = 0;
+	flag->dot = -1;
 	flag->space = 0;
 	flag->count = 0;
 	flag->type = 0;
