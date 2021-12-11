@@ -6,7 +6,7 @@
 /*   By: alorain <alorain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:24:57 by alorain           #+#    #+#             */
-/*   Updated: 2021/12/10 21:03:49 by alorain          ###   ########.fr       */
+/*   Updated: 2021/12/11 13:03:16 by alorain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,14 @@ static size_t	get_count(t_printf *flag, const char *str)
 static size_t	get_dot(t_printf *flag, const char *str)
 {
 	size_t	nb_digit;
-	
+
 	nb_digit = 0;
 	if (str[nb_digit] == '.')
 	{
 		nb_digit++;
 		while (ft_isdigit(str[nb_digit]))
 			nb_digit++;
-		/* if (!ft_atoi(str + 1))
-			flag->dot = -1; */
-		/* else */
-			flag->dot = ft_atoi(str + 1);
+		flag->dot = ft_atoi(str + 1);
 	}
 	return (nb_digit);
 }
@@ -83,15 +80,9 @@ size_t	parse_flags(const char *str, t_printf *flag)
 
 	i = 0;
 	init_flags(flag);
-/* 	if (str[i] == '%')
-	{
-		write_buff("%", 1);
-		return (1);
-	} */
 	i += get_flags(flag, str);
 	i += get_count(flag, str + i);
 	i += get_dot(flag, str + i);
 	flag->type = str[i++];
-	/* printf("str[i] parse :%c\n", str[i]); */
 	return (i);
 }

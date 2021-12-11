@@ -6,18 +6,18 @@
 /*   By: alorain <alorain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 11:58:55 by alorain           #+#    #+#             */
-/*   Updated: 2021/12/08 10:53:51 by alorain          ###   ########.fr       */
+/*   Updated: 2021/12/11 13:02:27 by alorain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_PRINTF_H
+#ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <unistd.h>
 # include "libft.h"
 
-typedef	struct s_printf 
+typedef struct s_printf
 {
 	int		minus;
 	int		plus;

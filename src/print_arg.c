@@ -6,74 +6,15 @@
 /*   By: alorain <alorain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:31:56 by alorain           #+#    #+#             */
-/*   Updated: 2021/12/10 22:40:09 by alorain          ###   ########.fr       */
+/*   Updated: 2021/12/11 13:15:07 by alorain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_utils.h"
 
-void	manage_char(t_printf *flag, char c)
+static void	manage_uinteger(t_printf *flag, unsigned int nbr)
 {
-	if (flag->count)
-	{
-		if (flag->minus)
-		{
-			write_buff(&c, 1);
-			print_char(' ', flag->count - 1);
-		}
-		else
-		{
-			print_char(' ', flag->count - 1);
-			write_buff(&c, 1);
-		}
-	}
-	else
-		write_buff(&c, 1);	
-}
-
-int	str_null(t_printf *flag, char *str)
-{
-	if (str)
-		return (0);
-	if (flag->count == 0 && flag->dot == 0)
-		return (1);
-	if (flag->count == 0 || flag->dot == -1)
-	{
-		if (flag->count && !flag->minus)
-			print_char(' ', flag->count - 6);
-		write_buff("(null)", 6);
-		if (flag->count && flag->minus)
-			print_char(' ', flag->count - 6);
-		return (1);
-	}
-	if (flag->dot >= 6 )
-	{
-		print_char(' ', flag->count - 6);
-		write_buff("(null)", 6);
-	}
-	else
-		print_char(' ', flag->count);
-	return (1);
-}
-
-void	manage_string(t_printf *flag, char *str)
-{
-	int str_len;
-
-	str_len = 0;
-	if (str_null(flag, str))
-		return ;
-	str_len = reg_len(flag, str);
-	if (!flag->minus)
-		print_char(' ', flag->count - str_len);
-	ft_putstr(str, str_len);
-	if (flag->minus)
-		print_char(' ', flag->count - str_len);
-}
-
-void	manage_uinteger(t_printf *flag, unsigned int nbr)
-{
-	int nb_digits;
+	int	nb_digits;
 
 	nb_digits = count_digit_base_un(nbr, 10);
 	reg_dot(flag, nb_digits);
@@ -89,13 +30,14 @@ void	manage_uinteger(t_printf *flag, unsigned int nbr)
 		print_char(' ', flag->count - flag->dot);
 }
 
-void	manage_integer(t_printf *flag, int nbr)
+static void	manage_integer(t_printf *flag, int nbr)
 {
-	int nb_digits;
-	int prefix;
+	int	nb_digits;
+	int	prefix;
 
 	prefix = 0;
-	if ((flag->plus && nbr > 0) || (flag->count && nbr < 0))
+	if ((flag->plus && nbr >= 0) || (flag->count && nbr < 0)
+		|| (flag->space && nbr >= 0))
 		prefix ++;
 	nb_digits = count_digit_base(nbr, 10);
 	reg_dot(flag, nb_digits);
@@ -103,9 +45,11 @@ void	manage_integer(t_printf *flag, int nbr)
 		print_char(' ', flag->count - flag->dot - prefix);
 	if (nbr < 0)
 		write_buff("-", 1);
-	if (flag->plus && nbr > 0)
+	if (flag->space && nbr >= 0)
+		write_buff(" ", 1);
+	if (flag->plus && nbr >= 0)
 		write_buff("+", 1);
-	else if (flag->zero && !flag->minus)
+	if (flag->zero && !flag->minus)
 		print_char('0', flag->count - flag->dot - prefix);
 	print_char('0', flag->dot - nb_digits);
 	ft_putnbr(nbr);
@@ -113,9 +57,9 @@ void	manage_integer(t_printf *flag, int nbr)
 		print_char(' ', flag->count - flag->dot - prefix);
 }
 
-void	manage_hexa(t_printf *flag, unsigned int nbr, char *base)
+static void	manage_hexa(t_printf *flag, unsigned int nbr, char *base)
 {
-	int nb_digits;
+	int	nb_digits;
 	int	prefix;
 
 	prefix = 0;
@@ -137,7 +81,7 @@ void	manage_hexa(t_printf *flag, unsigned int nbr, char *base)
 		print_char(' ', flag->count - flag->dot - prefix);
 }
 
-void	manage_pointer(t_printf *flag, unsigned long p)
+static void	manage_pointer(t_printf *flag, unsigned long p)
 {
 	int	nb_digits;
 
@@ -161,21 +105,8 @@ void	manage_pointer(t_printf *flag, unsigned long p)
 		print_char(' ', flag->count - flag->dot - 2);
 }
 
-void print_struct(t_printf *flags)
-{    
-    printf("flags->minus = %d;\n\
-    flags->zero = %d;\n\
-    flags->space = %d;\n\
-    flags->dot = %d;\n\
-    flags->diez = %d;\n\
-    flags->plus = %d;\n\
-    flags->count = %d;\n\
-    flags->type = %c;\n", flags->minus, flags->zero, flags->space, flags->dot, flags->diez, flags->plus, flags->count, flags->type);
-}
-
 void	print_arg(t_printf *flag, va_list vl)
 {
-	/* print_struct(flag); */
 	if (flag->type == 'c')
 		manage_char(flag, (char)(va_arg(vl, int)));
 	if (flag->type == 'i' || flag->type == 'd')
@@ -185,7 +116,7 @@ void	print_arg(t_printf *flag, va_list vl)
 	if (flag->type == 'X')
 		manage_hexa(flag, va_arg(vl, unsigned int), "0123456789ABCDEF");
 	if (flag->type == 's')
-		manage_string(flag, va_arg(vl, char*));
+		manage_string(flag, va_arg(vl, char *));
 	if (flag->type == 'u')
 		manage_uinteger(flag, va_arg(vl, unsigned int));
 	if (flag->type == 'p')

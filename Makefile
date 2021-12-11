@@ -4,7 +4,7 @@ OBJ_DIR = bin/
 LIBFT_DIR = libft/
 
 SRCS = ft_printf.c buffer.c ft_printf_utils.c \
-		parser.c print_arg.c print_arg_utils.c print_arg_utils2.c utils.c
+		parser.c print_arg.c utils.c print_arg2.c
 
 OBJS = $(addprefix ${OBJ_DIR}, ${SRCS:.c=.o})
 

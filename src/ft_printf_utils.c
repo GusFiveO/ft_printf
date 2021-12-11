@@ -6,13 +6,11 @@
 /*   By: alorain <alorain@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 12:07:37 by alorain           #+#    #+#             */
-/*   Updated: 2021/12/10 22:37:19 by alorain          ###   ########.fr       */
+/*   Updated: 2021/12/11 13:02:56 by alorain          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "ft_printf_utils.h"
-#include "libft.h"
 
 void	ft_putchar(char c)
 {
@@ -29,22 +27,6 @@ void	ft_putstr(char *str, int len)
 		ft_putchar(str[i]);
 		i++;
 	}
-}
-
-void	ft_putnbr_zero_int(int n)
-{
-	if (n == -2147483648)
-	{
-		ft_putstr("2147483648", 11);
-		return ;
-	}
-	if (n >= 10)
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
-	else
-		ft_putchar(n + '0');
 }
 
 void	ft_putnbr(int n)
