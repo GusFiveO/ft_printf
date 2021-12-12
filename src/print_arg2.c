@@ -31,19 +31,29 @@ void	manage_char(t_printf *flag, char c)
 		write_buff(&c, 1);
 }
 
+static void	str_null2(t_printf *flag)
+{
+	if (flag->count && !flag->minus)
+		print_char(' ', flag->count - 6);
+	if (flag->count == -1)
+		write_buff("(null)", 6);
+	else if (flag->dot != -1 && flag->dot < 6)
+		write_buff("(null)", flag->dot);
+	else
+		write_buff("(null)", 6);
+	if (flag->count && flag->minus)
+		print_char(' ', flag->count - 6);
+}
+
 static int	str_null(t_printf *flag, char *str)
 {
 	if (str)
 		return (0);
-	if (flag->count == 0 && flag->dot == 0)
+	if (!flag->count && !flag->dot)
 		return (1);
-	if (flag->count == 0 || flag->dot == -1)
+	if (!flag->count || flag->dot == -1)
 	{
-		if (flag->count && !flag->minus)
-			print_char(' ', flag->count - 6);
-		write_buff("(null)", 6);
-		if (flag->count && flag->minus)
-			print_char(' ', flag->count - 6);
+		str_null2(flag);
 		return (1);
 	}
 	if (flag->dot >= 6)

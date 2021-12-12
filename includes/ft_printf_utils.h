@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alorain <alorain@student.42.fr>            +#+  +:+       +#+        */
+/*   By: augustinlorain <augustinlorain@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 14:37:20 by alorain           #+#    #+#             */
-/*   Updated: 2021/12/11 13:01:05 by alorain          ###   ########.fr       */
+/*   Updated: 2021/12/12 17:00:44 by augustinlor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,10 @@ size_t	count_digit_base_un(unsigned long n, size_t base_len);
 int		reg_len(t_printf *flag, char *str);
 void	reg_dot(t_printf *flag, int nb_digits);
 
+	/*print_arg_utils.c*/
+
+void	manage_0_dot(t_printf *flag);
+void	manage_diez(t_printf *flag, int nbr);
+void	manage_prefix(t_printf *flag, int nbr);
+void	manage_percent(t_printf *flag);
 #endif
