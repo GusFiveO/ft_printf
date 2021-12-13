@@ -52,7 +52,7 @@ void	print_char(char c, int n);
 size_t	count_digit_base(int n, int base_len);
 size_t	count_digit_base_un(unsigned long n, size_t base_len);
 int		reg_len(t_printf *flag, char *str);
-void	reg_dot(t_printf *flag, int nb_digits);
+void	reg_dot(t_printf *flag, int nb_digits, long nbr);
 
 	/*print_arg_utils.c*/
 

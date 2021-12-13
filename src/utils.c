@@ -12,8 +12,10 @@
 
 #include "ft_printf_utils.h"
 
-void	reg_dot(t_printf *flag, int nb_digits)
+void	reg_dot(t_printf *flag, int nb_digits, long nbr)
 {
+	if (!nbr && !flag->dot)
+		nb_digits = 0;
 	if (flag->dot < nb_digits)
 		flag->dot = nb_digits;
 }

@@ -16,6 +16,8 @@ void	manage_0_dot(t_printf *flag)
 {
 	if (!flag->count)
 		return ;
+	if (flag->plus || flag->count)
+		return ;
 	else
 		write_buff(" ", 1);
 }
@@ -32,7 +34,7 @@ void	manage_prefix(t_printf *flag, int nbr)
 {
 	if (nbr < 0)
 		write_buff("-", 1);
-	if (flag->space && nbr >= 0)
+	if (flag->space && nbr >= 0 && !flag->plus)
 		write_buff(" ", 1);
 	if (flag->plus && nbr >= 0)
 		write_buff("+", 1);

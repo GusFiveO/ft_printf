@@ -19,10 +19,10 @@ static void	manage_uinteger(t_printf *flag, unsigned int nbr)
 
 	temp_dot = flag->dot;
 	nb_digits = count_digit_base_un(nbr, 10);
-	reg_dot(flag, nb_digits);
+	reg_dot(flag, nb_digits, nbr);
 	if (!flag->zero && !flag->minus)
 		print_char(' ', flag->count - flag->dot);
-	else if (flag->zero && temp_dot != -1)
+	else if (flag->zero && !flag->minus && temp_dot != -1)
 		print_char(' ', flag->count - flag->dot);
 	if (flag->plus && nbr > 0)
 		write_buff("+", 1);
@@ -49,10 +49,10 @@ static void	manage_integer(t_printf *flag, int nbr)
 		|| (flag->space && nbr >= 0))
 		prefix ++;
 	nb_digits = count_digit_base(nbr, 10);
-	reg_dot(flag, nb_digits);
+	reg_dot(flag, nb_digits, nbr);
 	if (!flag->zero && !flag->minus)
 		print_char(' ', flag->count - flag->dot - prefix);
-	else if (flag->zero && temp_dot != -1)
+	else if (flag->zero && !flag->minus && temp_dot != -1)
 		print_char(' ', flag->count - flag->dot - prefix);
 	manage_prefix(flag, nbr);
 	if (flag->zero && !flag->minus && temp_dot == -1)
@@ -77,10 +77,10 @@ static void	manage_hexa(t_printf *flag, unsigned int nbr, char *base)
 	if (nbr && flag->diez)
 		prefix = 2;
 	nb_digits = count_digit_base_un(nbr, 16);
-	reg_dot(flag, nb_digits);
+	reg_dot(flag, nb_digits, nbr);
 	if (!flag->zero && !flag->minus)
 		print_char(' ', flag->count - flag->dot - prefix);
-	else if (flag->zero && temp_dot != -1)
+	else if (flag->zero && !flag->minus && temp_dot != -1)
 		print_char(' ', flag->count - flag->dot - prefix);
 	manage_diez(flag, nbr);
 	if (flag->zero && !flag->minus && temp_dot == -1)
@@ -99,7 +99,7 @@ static void	manage_pointer(t_printf *flag, unsigned long p)
 	int	nb_digits;
 
 	nb_digits = count_digit_base_un(p, 16);
-	reg_dot(flag, nb_digits);
+	reg_dot(flag, nb_digits, p);
 	if (!flag->zero && !flag->minus)
 	{
 		print_char(' ', flag->count - flag->dot - 2);

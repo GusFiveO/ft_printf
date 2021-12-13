@@ -56,13 +56,18 @@ static int	str_null(t_printf *flag, char *str)
 		str_null2(flag);
 		return (1);
 	}
-	if (flag->dot >= 6)
-	{
+	if (flag->dot >= 6 && !flag->minus)
 		print_char(' ', flag->count - 6);
-		write_buff("(null)", 6);
-	}
+	else if (flag->dot != -1 && !flag->minus)
+		print_char(' ', flag->count - flag->dot);
+	if (flag->dot <= 6 && flag->dot != -1)
+		write_buff("(null)", flag->dot);
 	else
-		print_char(' ', flag->count);
+		write_buff("(null)", 6);
+	if (flag->minus && flag->dot != -1 && flag->dot > 6)
+		print_char(' ', flag->count - 6);
+	else if (flag->minus && flag->dot <= 6)
+		print_char(' ', flag->count - flag->dot);
 	return (1);
 }
 
